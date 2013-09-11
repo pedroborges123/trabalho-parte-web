@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml" >
+        <ui:define name="title">
+           Cadastro Serviço           
+        </ui:define>
+
+        <ui:define name="body" >
+            <h:form >
+                <p:panel header="Serviço">  
+                    <h:panelGrid columns="2">  
+
+                        <h:outputText value="Categoria: " />  
+                        <p:inputText id="categoria" value="#{Controllerservico.categoriaNome}"  required="true"/>  
+
+                        <h:outputText value="Descrição: " />  
+                        <p:inputText id="descricao" value="#{Controllerservico.categoriaDescricao}" required="true" />  
+
+                        <h:outputText value="URL: " />  
+                        <p:inputText id="url" value="#{Controllerservico.url}" required="true" />  
+                                                
+                        <h:commandButton label="Salvar"  action="#{Controllerservico.cadastrarServico()}"  value="Salvar"  />
+
+                    </h:panelGrid>  
+                </p:panel>  
+
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

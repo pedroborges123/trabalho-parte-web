@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml" >
+        <ui:define name="title">
+            Cadastro Perguntas           
+        </ui:define>
+
+        <ui:define name="body" >
+            <h:form >
+                <p:panel header="Perguntas">  
+                    <h:panelGrid columns="3">  
+
+                        <h:outputText value="Pergunta: " />  
+                        <p:inputText id="pergunta" value="#{Controllerpergunta.pergunta}" required="true" />  
+                        <h:selectOneMenu id="tipolicenca" value="#{Controllerpergunta.nivel}" title="Nivel" >
+                            <f:selectItem itemLabel="Mix" itemValue="#{Controllerpergunta.nivel.valueOf(Mix)}"/>
+                            <f:selectItem itemLabel="Facil" itemValue="#{Controllerpergunta.nivel.valueOf(Facil)}"/>
+                            <f:selectItem itemLabel="Medio" itemValue="#{Controllerpergunta.nivel.valueOf(Medio)}"/>
+                            <f:selectItem itemLabel="Dificil" itemValue="#{Controllerpergunta.nivel.valueOf(Dificil)}"/>
+                        </h:selectOneMenu>
+
+                        <h:outputText value="Resposta 1: " />  
+                        <p:inputText id="resposta" value="#{Controllerpergunta.resposta1}"  required="true" />  
+                        <p:selectBooleanButton value="#{Controllerpergunta.resp1}" onLabel="Yes" offLabel="No" />  
+
+                        <h:outputText value="Resposta 2: " />  
+                        <p:inputText id="resposta2" value="#{Controllerpergunta.resposta2}"  required="true" />  
+                        <p:selectBooleanButton value="#{Controllerpergunta.resp2}" onLabel="Yes" offLabel="No" />  
+
+                        <h:outputText value="Resposta 3: " />  
+                        <p:inputText id="resposta3" value="#{Controllerpergunta.resposta3}"  required="true" />  
+                        <p:selectBooleanButton value="#{Controllerpergunta.resp3}" onLabel="Yes" offLabel="No" />  
+
+                        <h:commandButton label="Salvar"  action="#{Controllerpergunta.cadastrarPergunta()}"  value="Salvar"  />
+
+                    </h:panelGrid>  
+                </p:panel>  
+
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
