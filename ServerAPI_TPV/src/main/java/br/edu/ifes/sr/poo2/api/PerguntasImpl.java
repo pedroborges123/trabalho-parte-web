@@ -12,7 +12,7 @@ import java.util.List;
 public class PerguntasImpl extends AbstractAPI implements PerguntasInterface {
 
     public PerguntasImpl() {
-        URL_serviçoTerceiro += "/perguntas";
+        URL_servicoTerceiro += "/perguntas";
     }
 
     @Override
@@ -20,7 +20,7 @@ public class PerguntasImpl extends AbstractAPI implements PerguntasInterface {
 
         String PerguntaJson = gson.toJson(P);
 
-        ClientResponse response = clientAPIUtil.post(URL_serviçoTerceiro + "/add", PerguntaJson);
+        ClientResponse response = clientAPIUtil.post(URL_servicoTerceiro + "/add", PerguntaJson);
 
         String retorno = response.getEntity(String.class);
 
@@ -39,7 +39,7 @@ public class PerguntasImpl extends AbstractAPI implements PerguntasInterface {
     @Override
     public List<Pergunta> getAll() {
 
-        ClientResponse response = clientAPIUtil.get(URL_serviçoTerceiro + "/getall");
+        ClientResponse response = clientAPIUtil.get(URL_servicoTerceiro + "/getall");
 
         String jsonResposta = response.getEntity(String.class);
 

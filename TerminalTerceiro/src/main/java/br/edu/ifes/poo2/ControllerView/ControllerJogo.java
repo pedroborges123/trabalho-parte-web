@@ -1,27 +1,43 @@
 package br.edu.ifes.poo2.ControllerView;
 
+import br.edu.ifes.poo2.model.Servico;
 import br.edu.ifes.sr.poo2.api.JogadorImpl;
+import br.edu.ifes.sr.poo2.api.ServicoImpl;
 import br.edu.ifes.sr.poo2.model.Jogador;
+import br.edu.ifes.sr.poo2.model.Nivel;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 @ManagedBean(name = "Controllerjogo")
 @SessionScoped
-public class ControllerJogo implements Serializable{
+public class ControllerJogo implements Serializable {
 
     private String email;
     private String senha;
-    private JogadorImpl jogoAPI;
+    private ServicoImpl servico;
     private Jogador current = new Jogador();
     private String username;
-    private DataModel categoria;
+    private DataModel servicoList;
     private String usernameCurrent;
+    private Nivel nivel;
 
+    public Nivel getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
+    }
+    
+    
+    
     public String getUsername() {
         return username;
     }
@@ -37,9 +53,7 @@ public class ControllerJogo implements Serializable{
     public void setUsernameCurrent(String usernameCurrent) {
         this.usernameCurrent = usernameCurrent;
     }
-            
-    
-    
+
     public String getEmail() {
         return email;
     }
@@ -64,65 +78,43 @@ public class ControllerJogo implements Serializable{
         this.current = current;
     }
 
-    
-    
-    
-    
-    public String logar() {
-        System.out.println(email + " " + senha);
-        if (this.email == null && this.senha == null) {
-            return "error";
+    public DataModel getServicoList() {
+        return servicoList;
+    }
 
-        }
-        this.jogoAPI = new JogadorImpl();
-        try {
-            //this.current.setEmail(this.jogoAPI.login(this.email, this.senha));
-            this.usernameCurrent =  this.jogoAPI.login(this.email, this.senha);
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usernameCurrent", this.usernameCurrent);
-            if (usernameCurrent == null) {
-
-                return "/paginasjogo/error";
-
-            }
-
-            //this.current.setEmail(email);
-
-        } catch (Exception ex) {
-            Logger.getLogger(ControllerJogo.class.getName()).log(Level.SEVERE, null, ex);
-            return "/paginasjogo/error";
-        }
-        return "/paginasjogo/telainicial";
+    public void setServicoList(DataModel servicoList) {
+        this.servicoList = servicoList;
     }
     
-    public String cadastrar() {
-        System.out.println(email + " " + senha);
-        if (this.email == null && this.senha == null) {
-            return "/paginasjogo/error";
-
-        }
-        //current.setEmail(email);
-       // current.setSenha(senha);
-        //current.setUsername(username);
-        this.jogoAPI = new JogadorImpl();
+    
+    
+    public void mostrarCategorias(){
+        
+        this.servico = new ServicoImpl();
         try {
-            br.edu.ifes.sr.poo2.api.model.Jogador jogador = new br.edu.ifes.sr.poo2.api.model.Jogador();
-            jogador.setEmail(email);
-            jogador.setSenha(senha);
-            jogador.setUsername(username);
-            jogoAPI.cadastrar(jogador);
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("jogador", jogador);
+            
+           
+            this.servicoList = new ListDataModel(servico.showAllServices());
+            
+            
             
         } catch (Exception ex) {
-            Logger.getLogger(ControllerGerente.class.getName()).log(Level.SEVERE, null, ex);
-             return "/paginasjogo/error";
+            
+            System.out.println(">>>" +ex); 
+            Logger.getLogger(ControllerJogo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        this.logar();
-
-        return "paginasjogo/telainicial";
-
+        
+        
     }
     
+    public String preparList(){
+        
+        //this.servicoList = null;
+        this.mostrarCategorias();
+        
+        return "/paginasjogo/jogar/categorialista";
+    }
     
     
     

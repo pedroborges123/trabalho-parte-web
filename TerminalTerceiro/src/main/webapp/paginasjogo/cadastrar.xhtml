@@ -21,19 +21,19 @@ and open the template in the editor.
                     <h:panelGrid columns="2">  
 
                         <h:outputText value="Email: " />  
-                        <p:inputText id="email" value="#{Controllerjogo.email}" required="true" />  
+                        <p:inputText id="email" value="#{Controllerjogador.email}" required="true" />  
 
                          <h:outputText value="username: " />  
-                         <p:inputText id="username" value="#{Controllerjogo.username}" required="true" />  
+                         <p:inputText id="username" value="#{Controllerjogador.username}" required="true" />  
                         
                         
                         <h:outputText value="Senha: " />  
-                        <p:password id="senha" value="#{Controllerjogo.senha}"  required="true" feedback="true"/>  
+                        <p:password id="senha" value="#{Controllerjogador.senha}"  required="true" feedback="true"/>  
 
                         
                         
                         
-                        <h:commandButton label="Salvar"  action="#{Controllerjogo.cadastrar()}"  value="Salvar"  />
+                        <h:commandButton label="Salvar"  action="#{Controllerjogador.cadastrar()}"  value="Salvar"  />
 
                     </h:panelGrid>  
                 </p:panel>  

@@ -27,12 +27,12 @@ public class JogoImpl extends AbstractAPI implements JogarInterface{
 		
 		int score = this.jogo.salvarJogo(URLServico, jogo);
 		
-		this.salvarPontos(score, username);
+		this.showPontos(score);
 		
 	}
 	
-	private void salvarPontos(int score, String j){
-		
+	private int showPontos(int score) {
+		return score;
 		
 		
 	}

@@ -6,6 +6,7 @@ import br.edu.ifes.sr.poo2.api.model.Categoria;
 import br.edu.ifes.sr.poo2.api.model.Gerente;
 import br.edu.ifes.sr.poo2.api.model.Servico;
 import br.edu.ifes.sr.poo2.util.AbstractAPI;
+import java.util.ArrayList;
 
 public class ServicoImpl extends AbstractAPI implements ServicoInterface{
 
@@ -41,7 +42,10 @@ public class ServicoImpl extends AbstractAPI implements ServicoInterface{
     @Override
 	public List<Servico> showAllServices() throws Exception{
 		
-		return this.service.getAll();
+                List<Servico> s = new ArrayList<Servico>();
+                s = this.service.getAll();
+                System.out.println(s);    
+		return s;
 		
 		
 	}

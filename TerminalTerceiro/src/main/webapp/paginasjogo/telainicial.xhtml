@@ -16,7 +16,7 @@
             <h:form >
                 <p:panel header="Quiz">  
                     <h:panelGrid columns="2">  
-                        <h:commandButton action="/paginasjogo/jogar/categorialista" label="Jogar"  value="Jogar"/>
+                        <h:commandButton action="#{Controllerjogo.preparList()}" label="Jogar"  value="Jogar"/>
                                    
                         <h:commandButton action="#{Controllergerente.showRanking()}" value="Ver Ranking" />
                     </h:panelGrid>  

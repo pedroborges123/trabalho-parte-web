@@ -22,7 +22,7 @@ public class LogConfigImpl extends AbstractAPI implements LogConfigInterface{
     @Override
     public LogConfig getConfig() {
 		
-		ClientResponse response = clientAPIUtil.get(URL_serviçoTerceiro+"/getID");
+		ClientResponse response = clientAPIUtil.get(URL_servicoTerceiro+"/getID");
 		
 		String jsonResposta = response.getEntity(String.class);
 		
@@ -43,7 +43,7 @@ public class LogConfigImpl extends AbstractAPI implements LogConfigInterface{
         
 		String LogConfigJSON = gson.toJson(log);
 		
-		ClientResponse response = clientAPIUtil.post(URL_serviçoTerceiro+"/add/", LogConfigJSON);
+		ClientResponse response = clientAPIUtil.post(URL_servicoTerceiro+"/add/", LogConfigJSON);
 		
 		String retorno = response.getEntity(String.class);
 		
@@ -64,7 +64,7 @@ public class LogConfigImpl extends AbstractAPI implements LogConfigInterface{
         
 		String LogConfigJSON = gson.toJson(log);
 		
-		ClientResponse response = clientAPIUtil.post(URL_serviçoTerceiro+"/add/", LogConfigJSON);
+		ClientResponse response = clientAPIUtil.post(URL_servicoTerceiro+"/add/", LogConfigJSON);
 		
 		String retorno = response.getEntity(String.class);
 		

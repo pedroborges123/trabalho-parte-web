@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml" >
+        <ui:define name="title">
+            Categoria            
+        </ui:define>
+
+        <ui:define name="body" >
+            <h:form >
+                <p:panel header="Categoria">  
+                    <p:dataTable var="Categoria" id="categria" value="#{Controllerjogo.servicoList}">  
+
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{Controllerjogo.servicoList.getRowData().categoria.nome}" /> 
+                        </p:column>
+
+                        <p:column headerText="URL">  
+                            <h:outputText value="#{Controllerjogo.servicoList.getRowData().url}" />  
+                        </p:column>  
+
+                        <p:column headerText="Nivel"   >  
+                            <h:selectOneMenu id="tipolicenca" value="#{Controllerjogo.nivel}" title="Nivel" >
+                                <f:selectItem itemLabel="Mix" itemValue="#{Controllerjogo.nivel.valueOf(Mix)}"/>
+                                <f:selectItem itemLabel="Facil" itemValue="#{Controllerjogo.nivel.valueOf(Facil)}"/>
+                                <f:selectItem itemLabel="Medio" itemValue="#{Controllerjogo.nivel.valueOf(Medio)}"/>
+                                <f:selectItem itemLabel="Dificil" itemValue="#{Controllerjogo.nivel.valueOf(Dificil)}"/>
+                            </h:selectOneMenu>
+                        </p:column>  
+
+                        <p:column headerText="Jogar"   >  
+                            <h:commandButton action="/index" value="Jogar" />  
+                        </p:column>  
+
+
+                    </p:dataTable>  
+                </p:panel>  
+
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>

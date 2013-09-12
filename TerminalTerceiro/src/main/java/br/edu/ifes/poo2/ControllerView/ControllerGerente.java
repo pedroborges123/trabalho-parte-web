@@ -34,6 +34,8 @@ public class ControllerGerente implements Serializable {
         return email;
     }
 
+    
+    
     public DataModel getRanking() {
         return ranking;
     }
