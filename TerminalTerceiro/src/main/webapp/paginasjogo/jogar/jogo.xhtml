@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml" >
+        <ui:define name="title">
+            Categoria            
+        </ui:define>
+
+        <ui:define name="body" >
+            <h:form >
+                <p:panel header="">  
+                    <p:dataTable var="Categoria" id="categria" value="#{Controllerjogo.servicoList}" >  
+
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{Controllerjogo.servicoList.getRowData().categoria.nome}" /> 
+                        </p:column>
+
+                        <p:column headerText="URL">  
+                            <h:outputText value="#{Controllerjogo.servicoList.getRowData().url}" />  
+                        </p:column>  
+
+                        <p:column headerText="Mix"   >  
+                            <h:commandButton value="Jogar" action="#{Controllerjogo.jogarMix(Controllerjogo.servicoList.getRowData().url)}" />
+                        </p:column>  
+                        
+                        
+
+
+                    </p:dataTable>  
+                </p:panel>  
+
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>

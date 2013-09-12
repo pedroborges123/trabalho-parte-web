@@ -15,7 +15,7 @@
         <ui:define name="body" >
             <h:form >
                 <p:panel header="Categoria">  
-                    <p:dataTable var="Categoria" id="categria" value="#{Controllerjogo.servicoList}">  
+                    <p:dataTable var="Categoria" id="categria" value="#{Controllerjogo.servicoList}" >  
 
                         <p:column headerText="Categoria">
                             <h:outputText value="#{Controllerjogo.servicoList.getRowData().categoria.nome}" /> 
@@ -25,18 +25,23 @@
                             <h:outputText value="#{Controllerjogo.servicoList.getRowData().url}" />  
                         </p:column>  
 
-                        <p:column headerText="Nivel"   >  
-                            <h:selectOneMenu id="tipolicenca" value="#{Controllerjogo.nivel}" title="Nivel" >
-                                <f:selectItem itemLabel="Mix" itemValue="#{Controllerjogo.nivel.valueOf(Mix)}"/>
-                                <f:selectItem itemLabel="Facil" itemValue="#{Controllerjogo.nivel.valueOf(Facil)}"/>
-                                <f:selectItem itemLabel="Medio" itemValue="#{Controllerjogo.nivel.valueOf(Medio)}"/>
-                                <f:selectItem itemLabel="Dificil" itemValue="#{Controllerjogo.nivel.valueOf(Dificil)}"/>
-                            </h:selectOneMenu>
+                        <p:column headerText="Mix"   >  
+                            <h:commandButton value="Jogar" action="#{Controllerjogo.jogarMix(Controllerjogo.servicoList.getRowData().url)}" />
+                        </p:column>  
+                        
+                        <p:column headerText="Facil"   >  
+                              <h:commandButton value="Jogar" action="#{Controllerjogo.jogarFacil(Controllerjogo.servicoList.getRowData().url)}" />
+                        </p:column>  
+                        
+                        <p:column headerText="Medio"   >  
+                              <h:commandButton value="Jogar" action="#{Controllerjogo.jogarMedio(Controllerjogo.servicoList.getRowData().url)}" />
+                        </p:column>  
+                        
+                        <p:column headerText="Dificil"   >  
+                              <h:commandButton value="Jogar" action="#{Controllerjogo.jogarDificil(Controllerjogo.servicoList.getRowData().url)}" />
                         </p:column>  
 
-                        <p:column headerText="Jogar"   >  
-                            <h:commandButton action="/index" value="Jogar" />  
-                        </p:column>  
+                        
 
 
                     </p:dataTable>  

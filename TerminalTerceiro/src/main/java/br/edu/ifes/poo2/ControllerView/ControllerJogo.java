@@ -2,7 +2,9 @@ package br.edu.ifes.poo2.ControllerView;
 
 import br.edu.ifes.poo2.model.Servico;
 import br.edu.ifes.sr.poo2.api.JogadorImpl;
+import br.edu.ifes.sr.poo2.api.JogoImpl;
 import br.edu.ifes.sr.poo2.api.ServicoImpl;
+import br.edu.ifes.sr.poo2.api.model.Jogo;
 import br.edu.ifes.sr.poo2.model.Jogador;
 import br.edu.ifes.sr.poo2.model.Nivel;
 import java.io.Serializable;
@@ -26,13 +28,15 @@ public class ControllerJogo implements Serializable {
     private String username;
     private DataModel servicoList;
     private String usernameCurrent;
-    private Nivel nivel;
+    private br.edu.ifes.sr.poo2.api.model.Nivel nivel;
+    private JogoImpl jogoAPI;
+    private br.edu.ifes.sr.poo2.api.model.Jogo jogo;
 
-    public Nivel getNivel() {
+    public br.edu.ifes.sr.poo2.api.model.Nivel getNivel() {
         return nivel;
     }
 
-    public void setNivel(Nivel nivel) {
+    public void setNivel(br.edu.ifes.sr.poo2.api.model.Nivel nivel) {
         this.nivel = nivel;
     }
     
@@ -93,10 +97,7 @@ public class ControllerJogo implements Serializable {
         this.servico = new ServicoImpl();
         try {
             
-           
             this.servicoList = new ListDataModel(servico.showAllServices());
-            
-            
             
         } catch (Exception ex) {
             
@@ -104,9 +105,16 @@ public class ControllerJogo implements Serializable {
             Logger.getLogger(ControllerJogo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
     }
+
+    public Jogo getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
+    }
+    
     
     public String preparList(){
         
@@ -117,6 +125,47 @@ public class ControllerJogo implements Serializable {
     }
     
     
+    
+    public String jogarMix(String url){
+        this.nivel = br.edu.ifes.sr.poo2.api.model.Nivel.MIX;
+        return this.jogar(url);
+    }
+    
+     public String jogarFacil(String url){
+        this.nivel = br.edu.ifes.sr.poo2.api.model.Nivel.FACIL;
+        return this.jogar(url);
+    }
+     
+      public String jogarMedio(String url){
+        this.nivel = br.edu.ifes.sr.poo2.api.model.Nivel.MEDIO;
+        return this.jogar(url);
+    }
+    
+       public String jogarDificil(String url){
+        this.nivel = br.edu.ifes.sr.poo2.api.model.Nivel.DIFICIL;
+        return this.jogar(url);
+    }
+    
+    public String jogar(String url){
+        this.jogoAPI = new JogoImpl();
+        this.usernameCurrent = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usernameCurrent");
+        
+        System.out.println("JOGO: url:" + url + ", jogador: " + this.usernameCurrent + " nivel: " + this.nivel);
+        this.jogo =this.jogoAPI.jogar(username,url, this.nivel);
+        this.prepararJogo(this.jogo);
+        System.out.println(this.jogo.getIdJogo());
+        
+        return "/paginasjogo/jogar/jogo";
+    }
+    
+    
+    public void prepararJogo(br.edu.ifes.sr.poo2.api.model.Jogo jogo){
+        
+        
+        
+        
+        
+    }
     
     
     

@@ -56,6 +56,12 @@ public class Jogador extends Usuario{
 	public void setScore(long score) {
 		this.score = score;
 	}
+
+    public Jogador(String email, String senha, String username) {
+        this.email = email;
+        this.senha = senha;
+        this.username = username;
+    }
 	
 	
 	

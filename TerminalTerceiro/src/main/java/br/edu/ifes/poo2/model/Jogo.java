@@ -1,4 +1,4 @@
-package br.edu.ifes.sr.poo2.model;
+package br.edu.ifes.poo2.model;
 
 public class Jogo {
 
